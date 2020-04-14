@@ -5,6 +5,8 @@
         "*.wxs": "javascript",
         "*.wxml": "html",
         "iostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "random": "cpp",
+        "iomanip": "cpp"
     }
 }
