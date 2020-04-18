@@ -16,7 +16,7 @@
 		"prefix": "cs",
 		"body": [
 			"#include<iostream>",
-			"using namespace std",
+			"using namespace std;",
 			"int main(){",
 			"\t$0",
 			"}"
@@ -35,4 +35,8 @@
 		"prefix": "fout",
 		"body": ["freopen(\"out.txt\",\"w\",stdout);"]
 	},
+	"bs":{
+		"prefix": "bs",
+		"body": ["#include <bits/stdc++.h>","using namespace std;",""]
+	}
 }
