@@ -5,16 +5,16 @@
 using namespace std;
 char strr[105];
 char* str_cat(char* a, char* b) {
-    aaaa c=a;
-    aaaa d=b;
+    aaaa c = a;
+    aaaa d = b;
     c.append(d);
     int i;
-    for(i=0;i<c.length();i++){
-        strr[i]=c[i];
-        a[i]=c[i];
+    for (i = 0; i < c.length(); i++) {
+        strr[i] = c[i];
+        a[i] = c[i];
     }
-    a[i]='\0';
-    strr[i]='\0';
+    a[i] = '\0';
+    strr[i] = '\0';
     return strr;
 }
 int main() {
