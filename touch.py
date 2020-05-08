@@ -14,6 +14,6 @@ if sys.argv[2] == 'c':
         open(pathname+"/"+alphabet[i]+".cpp", "w")
 elif sys.argv[2] == 'j':
     for i in range(1, files):
-        open(pathname+"/"+str(i)+".java", "w")
+        open(pathname+"/"+str(i)+".ja", "w")
 else:
     print("error")

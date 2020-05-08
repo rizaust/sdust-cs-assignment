@@ -9,6 +9,11 @@
         "random": "cpp",
         "iomanip": "cpp",
         "sstream": "cpp",
-        "regex": "cpp"
-    }
+        "regex": "cpp",
+        "ostream": "cpp"
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\cjr54\\3D Objects\\lombok.jar"
+    ]
 }

@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
-int main() {
-    int a;
-    cin>>a;
-    cout<<a;
-    return 0;
+int main(){
+    string a;
+    string b;
+    cin>>a>>b;
+    cout<<a<<b;
 }
