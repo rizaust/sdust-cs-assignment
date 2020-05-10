@@ -1,0 +1,16 @@
+public Rectangle(){
+     
+this(5,6);
+	
+}
+public Rectangle(int width, int length) {
+    this.width = width;
+    this.length = length;
+}
+public 
+String toString()
+{
+     
+return "width="+this.width+",length="+this.length
+
+}	

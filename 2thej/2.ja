@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Furniture f = new Furniture(sc.nextInt(),sc.nextInt(),sc.nextInt());
+		System.out.println(f.getHeight());
+		System.out.println(f.getLength());
+		System.out.println(f.getWidth());
+	}
+}
+
+/* 你的代码被嵌在这里*/
+class Furniture{
+    private int length;
+    private int height;
+    private int width;
+    Furniture(int length,int width,int height){
+        this.width=width;
+        this.height=height;
+        this.length=length;
+    }
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+}

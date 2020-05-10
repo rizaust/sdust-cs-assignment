@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Student a = new Student(in.nextInt(), in.next(), in.nextInt());
+        Student b = new Student(in.nextInt(), in.next(), in.nextInt());
+        Student c = new Student(in.nextInt(), in.next(), in.nextInt());
+        if (a.getScore() > b.getScore()) {
+            if (a.getScore() > c.getScore() && c.getScore() < b.getScore()) {
+                a.print();
+                b.print();
+                c.print();
+            } else if (a.getScore() > c.getScore() && c.getScore() > b.getScore()) {
+                a.print();
+                c.print();
+                b.print();
+            } else if (a.getScore() < c.getScore()) {
+                c.print();
+                a.print();
+                b.print();
+            }
+        } else {
+            if (a.getScore() > c.getScore()) {
+                b.print();
+                a.print();
+                c.print();
+            } else if (a.getScore() < c.getScore() && b.getScore() < c.getScore()) {
+                c.print();
+                b.print();
+                a.print();
+            } else if (a.getScore() < c.getScore() && b.getScore() < c.getScore()) {
+                b.print();
+                c.print();
+                a.print();
+            }
+        }
+    }
+
+}
+
+class Student {
+    private int no;
+    private String name;
+    private int score;
+
+    public Student(int _no, String _name, int _score) {
+        no = _no;
+        name = _name;
+        score = _score;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void print() {
+        System.out.println(no + " " + name + " " + score);
+    }
+}
