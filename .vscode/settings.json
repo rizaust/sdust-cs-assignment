@@ -10,7 +10,14 @@
         "iomanip": "cpp",
         "sstream": "cpp",
         "regex": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "memory": "cpp",
+        "limits": "cpp",
+        "streambuf": "cpp",
+        "typeinfo": "cpp"
     },
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
