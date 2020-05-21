@@ -1,0 +1,74 @@
+import java.util.Comparator;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        PersonSortable2[] persons = new PersonSortable2[n];
+        for (int i = 0; i < n; i++) {
+            persons[i] = new PersonSortable2(scanner.next(), scanner.nextInt());
+        }
+        System.out.println("NameComparator:sort");
+        Arrays.sort(persons, new NameComparator());
+        for (int i = 0; i < persons.length; i++) {
+            System.out.println(persons[i]);
+        }
+        System.out.println("AgeComparator:sort");
+
+        Arrays.sort(persons, new AgeComparator());
+        ;
+        for (int i = 0; i < persons.length; i++) {
+            System.out.println(persons[i]);
+        }
+        System.out.println(Arrays.toString(NameComparator.class.getInterfaces()));
+        System.out.println(Arrays.toString(AgeComparator.class.getInterfaces()));
+
+    }
+}
+
+class PersonSortable2 {
+    private String name;
+    private int age;
+
+    public PersonSortable2(String _name, int _age) {
+        this.name = _name;
+        this.age = _age;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + "-" + this.age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+class NameComparator implements Comparator<PersonSortable2> {
+    @Override
+    public int compare(PersonSortable2 o1, PersonSortable2 o2) {
+        return (o1.getName()).compareTo(o2.getName());
+    }
+}
+
+class AgeComparator implements Comparator<PersonSortable2> {
+    @Override
+    public int compare(PersonSortable2 o1, PersonSortable2 o2) {
+        return o1.getAge() - o2.getAge();
+    }
+}
