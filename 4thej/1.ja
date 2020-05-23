@@ -1,0 +1,100 @@
+import java.util.Scanner;
+import java.util.LinkedList;
+
+class Book {
+    private String name;
+    private int price;
+    private String author;
+    private int edition;
+
+    Book(String name, int price, String author, int edition) {
+        this.name = name;
+        this.price = price;
+        this.author = author;
+        this.edition = edition;
+    }
+
+    @Override
+    public String toString() {
+        return "name: " + this.name + ", price: " + this.price + ", author: " + this.author + ", edition: "
+                + this.edition;
+    }
+    public boolean equals(Book t) {
+        if (this.name.equalsIgnoreCase(t.getName()) && this.author.equalsIgnoreCase(t.getAuthor())
+                && this.edition == t.getEdition()) {
+            return true;
+        } else
+            return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getEdition() {
+        return edition;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
+    }
+}
+
+class BookList {
+    LinkedList<Book> booklist;
+
+    BookList() {
+        this.booklist = new LinkedList<>();
+    }
+
+    public void addBook(Book t) {
+        booklist.add(t);
+    }
+
+    public void searchBook(Book t) {
+        boolean is = true;
+        for (int i = 0, len = booklist.size(); i < len; ++i) {
+            if (t.equals(booklist.get(i))) {
+                System.out.println("found: " + i);
+                is = false;
+                break;
+            }
+        }
+        if (is) {
+            System.out.println("not found");
+        }
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        BookList bl = new BookList();
+        int n = s.nextInt();
+        for (int i = 0; i < n; i++) {
+            bl.addBook(new Book(s.next(), s.nextInt(), s.next(), s.nextInt()));
+        }
+        bl.searchBook(new Book(s.next(), 0, s.next(), s.nextInt()));
+    }
+}

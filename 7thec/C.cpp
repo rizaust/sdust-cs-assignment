@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
+#include <bits/stdc++.h>
 using namespace std;
+
 class Person {
    public:
     Person(int _a, char _s) {
@@ -42,22 +42,16 @@ class Teacher : public Person {
    protected:
     int par;
 };
-int main()
-{
+int main() {
     Person *p;
     int age, par;
     char sex, t;
-    while (cin>>age>>sex>>t>>par)
-    {
-        if (t == 's')
-        {
+    while (cin >> age >> sex >> t >> par) {
+        if (t == 's') {
             p = new Student(age, sex, par);
-        }
-        else
-        {
+        } else {
             p = new Teacher(age, sex, par);
         }
         delete p;
     }
- 
 }

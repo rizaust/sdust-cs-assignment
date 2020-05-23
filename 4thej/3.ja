@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        // HashMap<String,Integer> map = new HashMap<>();
+        Set<String> set = new TreeSet<>();
+        String temp = "";
+        // System.out.println(" ".split(" ").length);
+        while (!(temp = s.next()).equals("!!!!!")) {
+            set.add(temp);
+        }
+        System.out.println(set.size());
+        if (set.size() > 10) {
+            int i = 0;
+            for (String strings : set) {
+                System.out.println(strings);
+                i++;
+                if (i > 9) {
+                    return;
+                }
+            }
+        } else {
+            for (String strings : set) {
+                System.out.println(strings);
+            }
+        }
+
+    }
+}
