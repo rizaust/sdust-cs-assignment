@@ -4,6 +4,7 @@
         "*.wxss": "css",
         "*.wxs": "javascript",
         "*.wxml": "html",
+        "*.jsp": "jsp",
         "iostream": "cpp",
         "cmath": "cpp",
         "random": "cpp",
@@ -21,11 +22,11 @@
         "*.tcc": "cpp",
         "complex": "cpp",
         "list": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "algorithm": "cpp"
     },
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\cjr54\\3D Objects\\lombok.jar"
-    ],
-    "C_Cpp.default.intelliSenseMode": "gcc-x64"
+    ]
 }

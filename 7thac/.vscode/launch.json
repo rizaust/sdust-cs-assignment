@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Baohuang",
-            "request": "launch",
-            "mainClass": "java作业.Baohuang",
-            "projectName": "homework_6e8c2c42"
-        },
-        {
-            "type": "java",
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
             "mainClass": "Main",

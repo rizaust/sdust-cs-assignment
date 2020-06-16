@@ -1,0 +1,239 @@
+import java.util.*;
+
+public class Baohuang {
+    public static void main(String[] args) {
+        Poker[] pokers = utils.getPockers();// 生成一副完整的扑克
+        Integer[] PokerOrder = utils.getPokerOrder();
+        Person[] persons = new Person[5];
+        for (int i = 0; i < 5; i++) {
+            persons[i] = new Person();
+        }
+        utils.sendPoker(persons, PokerOrder);
+        for (int i = 0; i < 5; i++) {
+            persons[i].process(pokers);
+        }
+        // int king = utils.findKing(persons);
+        int king=0;
+        for(int i=0;i<5;i++){
+            if(persons[i].isKing){
+                king=i;
+            }
+        }
+        int shiwei = utils.findShiwei(persons, king);
+        // for(int i=0;i<5;i++){
+        //     System.out.println(persons[i].process(pokers));
+        // }
+        System.out.println("皇帝是："+persons[king].name);
+        System.out.println("皇帝的牌是:"+persons[king].toString(pokers));
+        if(persons[king].shiwei()==1||king==shiwei){
+            System.out.println("侍卫是他自己");
+        }
+        else if(persons[king].shiwei()==0){
+            System.out.println("这个皇上莫得侍卫");
+        }
+        else{
+            System.out.println("侍卫对应的牌是:"+pokers[persons[king].shiwei()]);
+            System.out.println("侍卫是："+persons[shiwei].name);
+            System.out.println("侍卫的牌是:"+persons[shiwei].toString(pokers));
+        }
+    }
+}
+
+class Poker {
+    // 扑克牌的类
+    public int num;// 大王、小王、2、A、K、Q、J、10、9、8、7、6、5、4、3
+    public int huaSe; // 王,黑桃，红桃，方片,梅花
+    public boolean isKing = false;// 是否为皇上牌
+
+    public Poker(int wang) {
+        // 王牌的构造函数
+        this.num = wang;
+        huaSe = 0;
+    }
+
+    public Poker(int num, int huaSe) {
+        // 普通牌的构造函数
+        this.num = num;
+        this.huaSe = huaSe;
+    }
+
+    String getHuase() {
+        // 获得自己的花色
+        if (this.isKing == true) {
+            return "皇上";
+        }
+        if (this.huaSe == 1) {
+            return "黑桃";
+        } else if (this.huaSe == 2) {
+            return "红桃";
+        } else if (this.huaSe == 3) {
+            return "方片";
+        } else if (this.huaSe == 4) {
+            return "梅花";
+        } else {
+            if (this.num == 0) {
+                return "大王";
+            } else
+                return "小王";
+        }
+    }
+
+    String getNum() {
+        // 获得自己的数字
+        String res = switch (this.num) {
+            case 0 -> "";
+            case 1 -> "";
+            case 2 -> "2";
+            case 3 -> "A";
+            case 4 -> "K";
+            case 5 -> "Q";
+            case 6 -> "J";
+            case 7 -> "10";
+            case 8 -> "9";
+            case 9 -> "8";
+            case 10 -> "7";
+            case 11 -> "6";
+            case 12 -> "5";
+            case 13 -> "4";
+            case 14 -> "3";
+            default -> "";
+        };
+        return res;
+    }
+
+    @Override
+    public String toString() {
+        // 这张牌的tostring
+        return getHuase() + getNum();
+    }
+}
+
+class Person {
+    // 人的类
+    String name;
+    boolean[] pai = new boolean[216];// 是否拥有某一张牌
+    static Poker[] pokerStd = utils.getPockers();
+    boolean isKing=false;
+    boolean process(Poker[] pokers) {
+        for (int i = 0; i < 216; i++) {
+            if (pai[i] == true) {
+                if (pokers[i].isKing == true) {
+                    isKing=true;
+                    return true;
+                }
+            }
+        }
+        isKing=false;
+        return false;
+    };// 是否是皇上
+    boolean isshiwei(Person person){
+        if(pai[person.shiwei()]==true||pai[person.shiwei()+1]==true||pai[person.shiwei()+2]==true||pai[person.shiwei()+3]==true){
+            return true;
+        }
+        else return false;
+    }
+    Person() {
+        for (int i = 0; i < 216; i++) {
+            pai[i] = false;
+        }
+        name = "玩家" + new Random().nextInt(1000000000);
+    }
+
+    int shiwei() {
+        int tong;
+        if (isKing == false)
+            return 9999;
+        List<Integer> shiweipai = new ArrayList<>();
+        for (int i = 24; i < 200; i += 4) {
+            tong = 0;
+            for (int k = 0; k < 4; k++) {
+                if (pai[i + k] == true) {
+                    tong++;
+                }
+            }
+            if (tong == 3) {
+                shiweipai.add(i);
+            }
+            if (tong == 4) {
+                return 1;
+            }
+        }
+        if (shiweipai.isEmpty()) {
+            return 0;
+        }
+        return shiweipai.get(0);
+    }
+
+    public String toString(Poker[] pokers) {
+        StringBuilder pokerss = new StringBuilder("[");
+        for (int i = 0; i < 216; i++) {
+            if (pai[i] == true) {
+                pokerss.append(pokers[i]);
+                pokerss.append(",");
+            }
+        }
+        pokerss.append("]");
+        return pokerss.toString();
+    }
+}
+
+class utils {
+    static Random random = new Random();
+
+    static Poker[] getPockers() {
+        // 获得一副完整的扑克
+        Poker[] pokers = new Poker[216];
+        int pokerNum = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                pokers[pokerNum++] = new Poker(i);
+            }
+        }
+        pokers[random.nextInt(4)].isKing = true;
+        for (int i = 2; i < 15; i++) {
+            for (int j = 1; j < 5; j++) {
+                for (int k = 0; k < 4; k++) {
+                    pokers[pokerNum++] = new Poker(i, j);
+                }
+            }
+        }
+        return pokers;
+    }
+
+    static Integer[] getPokerOrder() {
+        List<Integer> PokerOrder = new ArrayList<>();
+        for (int i = 0; i < 216; i++) {
+            PokerOrder.add(i);
+        }
+        Collections.shuffle(PokerOrder);
+        return PokerOrder.toArray(new Integer[216]);
+    }
+
+    static void sendPoker(Person[] persons, Integer[] PokerOrder) {
+        for (int i = 0; i < 216; i++) {
+            persons[i % 5].pai[PokerOrder[i]] = true;
+        }
+    }
+    static int findKing(Person[] persons){
+        for(int i=0;i<5;i++){
+            if(persons[i].isKing==true){
+                return i;
+            }
+        }
+        return 9999;
+    }
+    static int findShiwei(Person[] person,int king){
+        if(person[king].shiwei()==1){
+            return king;
+        }
+        if(person[king].shiwei()==0){
+            return 9999;
+        }
+        for(int i =0;i<5;i++){
+            if (person[i].isshiwei(person[king])){
+                return i;
+            }
+        }
+        return 9999;
+    }
+}
